@@ -1,0 +1,777 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@clerk/ui/themes/shadcn.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body-sans);
+  --font-mono: var(--font-code-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-mc-accent: var(--mc-accent);
+  --color-mc-ink: var(--mc-ink);
+  --color-mc-dim: var(--mc-dim);
+  --color-mc-line: var(--mc-line);
+  --color-mc-card: var(--mc-card);
+}
+
+/* ============================================================
+   THE MIND CORE UNIVERSE — DESIGN TOKENS
+   Dark = deep navy founder universe · Light = institutional paper
+   ============================================================ */
+
+:root {
+  --radius: 0.75rem;
+
+  /* Light — cool institutional paper */
+  --mc-bg: #f7f9fc;
+  --mc-bg-2: #eaf0f7;
+  --mc-card: #ffffff;
+  --mc-card-2: #f0f4fa;
+  --mc-ink: #071a33;
+  --mc-dim: #44597a;
+  --mc-faint: #8ca2c0;
+  --mc-accent: #2563eb;
+  --mc-accent-2: #60a5fa;
+  --mc-accent-deep: #1d4ed8;
+  --mc-accent-soft: rgba(37, 99, 235, 0.08);
+  --mc-line: rgba(7, 26, 51, 0.12);
+  --mc-line-soft: rgba(7, 26, 51, 0.06);
+  --mc-glow: rgba(37, 99, 235, 0.18);
+
+  /* primary CTA — inverted per mode for institutional contrast */
+  --mc-cta-bg: #071a33;
+  --mc-cta-fg: #ffffff;
+
+  /* ghost/outline CTA border */
+  --mc-ghost: rgba(7, 26, 51, 0.28);
+
+  /* subject hues (light) */
+  --sub-math: #2563eb;
+  --sub-science: #0d8a5f;
+  --sub-sst: #c2482e;
+  --sub-english: #c2417c;
+  --sub-hindi: #7452d9;
+  --sub-sanskrit: #0d8784;
+
+  /* shadcn mapping */
+  --background: #f7f9fc;
+  --foreground: #071a33;
+  --card: #ffffff;
+  --card-foreground: #071a33;
+  --popover: #ffffff;
+  --popover-foreground: #071a33;
+  --primary: #071a33;
+  --primary-foreground: #f7f9fc;
+  --secondary: #eaf0f7;
+  --secondary-foreground: #071a33;
+  --muted: #eaf0f7;
+  --muted-foreground: #44597a;
+  --accent: #2563eb;
+  --accent-foreground: #ffffff;
+  --destructive: #c2482e;
+  --destructive-foreground: #ffffff;
+  --border: rgba(7, 26, 51, 0.12);
+  --input: rgba(7, 26, 51, 0.12);
+  --ring: #2563eb;
+  --chart-1: #2563eb;
+  --chart-2: #0d8a5f;
+  --chart-3: #c2417c;
+  --chart-4: #7452d9;
+  --chart-5: #0d8784;
+  --sidebar: #f0f4fa;
+  --sidebar-foreground: #071a33;
+  --sidebar-primary: #2563eb;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eaf0f7;
+  --sidebar-accent-foreground: #071a33;
+  --sidebar-border: rgba(7, 26, 51, 0.12);
+  --sidebar-ring: #2563eb;
+}
+
+.dark {
+  /* Dark — the deep navy universe */
+  --mc-bg: #071a33;
+  --mc-bg-2: #0b2345;
+  --mc-card: #0c2440;
+  --mc-card-2: #102d52;
+  --mc-ink: #f7f9fc;
+  --mc-dim: #9db2d0;
+  --mc-faint: #5a7396;
+  --mc-accent: #3b82f6;
+  --mc-accent-2: #60a5fa;
+  --mc-accent-deep: #2563eb;
+  --mc-accent-soft: rgba(59, 130, 246, 0.12);
+  --mc-line: rgba(234, 240, 247, 0.12);
+  --mc-line-soft: rgba(234, 240, 247, 0.06);
+  --mc-glow: rgba(59, 130, 246, 0.3);
+
+  /* primary CTA — white plate, navy text (founder-grade) */
+  --mc-cta-bg: #ffffff;
+  --mc-cta-fg: #071a33;
+
+  /* ghost/outline CTA border — white on navy */
+  --mc-ghost: rgba(247, 249, 252, 0.34);
+
+  /* subject hues (dark) */
+  --sub-math: #60a5fa;
+  --sub-science: #34b98a;
+  --sub-sst: #e5684f;
+  --sub-english: #e86fa4;
+  --sub-hindi: #8b8cf8;
+  --sub-sanskrit: #2fb3ad;
+
+  /* shadcn mapping */
+  --background: #071a33;
+  --foreground: #f7f9fc;
+  --card: #0c2440;
+  --card-foreground: #f7f9fc;
+  --popover: #0c2440;
+  --popover-foreground: #f7f9fc;
+  --primary: #f7f9fc;
+  --primary-foreground: #071a33;
+  --secondary: #102d52;
+  --secondary-foreground: #f7f9fc;
+  --muted: #102d52;
+  --muted-foreground: #9db2d0;
+  --accent: #3b82f6;
+  --accent-foreground: #ffffff;
+  --destructive: #e5684f;
+  --destructive-foreground: #ffffff;
+  --border: rgba(234, 240, 247, 0.12);
+  --input: rgba(234, 240, 247, 0.12);
+  --ring: #3b82f6;
+  --chart-1: #3b82f6;
+  --chart-2: #34b98a;
+  --chart-3: #e86fa4;
+  --chart-4: #8b8cf8;
+  --chart-5: #2fb3ad;
+  --sidebar: #0c2440;
+  --sidebar-foreground: #f7f9fc;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #102d52;
+  --sidebar-accent-foreground: #f7f9fc;
+  --sidebar-border: rgba(234, 240, 247, 0.12);
+  --sidebar-ring: #3b82f6;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background: var(--mc-bg);
+    color: var(--mc-ink);
+    font-family: var(--font-body-sans), system-ui, sans-serif;
+    overflow-x: clip;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+  /* layered navy environment — atmospheric depth behind every section */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 85% 55% at 50% -12%, rgba(59, 130, 246, 0.07), transparent 62%),
+      radial-gradient(ellipse 60% 42% at 108% 104%, rgba(22, 56, 95, 0.28), transparent 64%),
+      radial-gradient(ellipse 52% 38% at -8% 82%, rgba(16, 45, 82, 0.22), transparent 62%);
+  }
+  .dark body::before {
+    background:
+      radial-gradient(ellipse 85% 55% at 50% -12%, rgba(59, 130, 246, 0.1), transparent 62%),
+      radial-gradient(ellipse 60% 42% at 108% 104%, rgba(22, 56, 95, 0.55), transparent 64%),
+      radial-gradient(ellipse 52% 38% at -8% 82%, rgba(16, 45, 82, 0.45), transparent 62%),
+      repeating-linear-gradient(0deg, rgba(96, 165, 250, 0.016) 0 1px, transparent 1px 88px),
+      repeating-linear-gradient(90deg, rgba(96, 165, 250, 0.016) 0 1px, transparent 1px 88px);
+  }
+
+  ::selection {
+    background: var(--mc-accent);
+    color: #ffffff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--mc-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--mc-ink) 18%, transparent);
+    border-radius: 8px;
+    border: 2px solid var(--mc-bg);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--mc-accent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--mc-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+/* ============================================================
+   UNIVERSE UTILITIES — TYPOGRAPHY SYSTEM
+   Display serif = Instrument Serif (the “mind”)
+   Body sans     = Instrument Sans   (the “voice”)
+   Code mono     = Space Mono        (the “code”)
+   ============================================================ */
+
+.font-display {
+  font-family: var(--font-serif-display), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+/* serif italic accent word inside a sans headline */
+.accent-serif {
+  font-family: var(--font-serif-display), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.font-code {
+  font-family: var(--font-code-mono), "Courier New", monospace;
+}
+
+.eyebrow {
+  font-family: var(--font-code-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.42em;
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: var(--mc-dim);
+}
+
+/* mono label for buttons + chips */
+.btn-mono {
+  font-family: var(--font-code-mono), monospace;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.text-dim {
+  color: var(--mc-dim);
+}
+.text-faint {
+  color: var(--mc-faint);
+}
+
+.mc-card {
+  background: var(--mc-card);
+  border: 1px solid var(--mc-line);
+  border-radius: var(--radius);
+}
+
+.mc-glass {
+  background: color-mix(in srgb, var(--mc-card) 72%, transparent);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+  border: 1px solid var(--mc-line);
+}
+
+.mc-hairline {
+  border-color: var(--mc-line);
+}
+
+/* cinematic film grain */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 9s steps(6) infinite;
+}
+
+.dark .grain::after {
+  opacity: 0.065;
+}
+
+@keyframes grain-shift {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-4%, 3%); }
+  40% { transform: translate(3%, -5%); }
+  60% { transform: translate(-3%, -2%); }
+  80% { transform: translate(4%, 4%); }
+}
+
+/* glow text for hero */
+.glow-accent {
+  text-shadow: 0 0 24px var(--mc-glow), 0 0 80px var(--mc-glow);
+}
+
+/* hero editorial — “Own the exam.” white→electric-blue sweep */
+.hero-editorial {
+  background: linear-gradient(
+    102deg,
+    var(--mc-ink) 4%,
+    color-mix(in srgb, var(--mc-accent-2) 55%, var(--mc-ink)) 38%,
+    var(--mc-accent-2) 64%,
+    var(--mc-accent) 96%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 22px var(--mc-glow));
+}
+
+/* orbit ring cursor zone */
+.orbital-ring {
+  border: 1px solid var(--mc-accent);
+  border-radius: 9999px;
+}
+
+/* underline sweep for links */
+.link-sweep {
+  position: relative;
+}
+.link-sweep::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-sweep:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* constellation dash draw */
+@keyframes dash-draw {
+  to { stroke-dashoffset: 0; }
+}
+.dash-draw {
+  stroke-dasharray: 4 5;
+  animation: dash-draw 2.4s ease-out forwards;
+}
+
+/* chapter constellation labels — svg hover sync */
+.constellation-label {
+  transition: fill 0.3s ease;
+}
+a:hover .constellation-label,
+a:focus-visible .constellation-label {
+  fill: var(--mc-accent);
+}
+
+/* breathing core (CSS variant) */
+@keyframes mc-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+.mc-breathe {
+  animation: mc-breathe 6s ease-in-out infinite;
+}
+
+@keyframes mc-spin {
+  to { transform: rotate(360deg); }
+}
+.mc-spin-slow {
+  animation: mc-spin 46s linear infinite;
+}
+.mc-spin-slower {
+  animation: mc-spin 90s linear infinite reverse;
+}
+
+@keyframes mc-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.mc-float {
+  animation: mc-float 7s ease-in-out infinite;
+}
+
+@keyframes mc-ping {
+  0% { transform: scale(1); opacity: 0.7; }
+  80%, 100% { transform: scale(2.1); opacity: 0; }
+}
+.mc-ping {
+  animation: mc-ping 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes mc-sheen {
+  0% { transform: translateX(-140%) skewX(-18deg); }
+  55%, 100% { transform: translateX(240%) skewX(-18deg); }
+}
+.mc-sheen {
+  animation: mc-sheen 4.6s ease-in-out infinite;
+}
+
+@keyframes mc-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  96% { transform: scaleY(0.08); }
+}
+.mc-blink {
+  animation: mc-blink 4.4s ease-in-out infinite;
+}
+
+/* hero scroll-cue mouse dot */
+@keyframes mc-scroll-dot {
+  0% { transform: translateY(0); opacity: 1; }
+  70% { transform: translateY(11px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+.mc-scroll-dot {
+  animation: mc-scroll-dot 1.9s ease-in-out infinite;
+}
+
+/* starfield twinkle */
+@keyframes mc-twinkle {
+  0%, 100% { opacity: 0.18; }
+  50% { opacity: 0.95; }
+}
+.mc-twinkle {
+  animation: mc-twinkle 3.6s ease-in-out infinite;
+}
+
+/* ---------------- night sky: shooting stars + moon ---------------- */
+
+/* one meteor pass: the streak travels along --mc-shoot-dx/dy and is
+   only visible during the first ~11% of its (long) cycle, so each
+   star shoots briefly, then the sky stays quiet for many seconds */
+@keyframes mc-shoot {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  1.5% {
+    opacity: 0;
+  }
+  3.5% {
+    opacity: 1;
+  }
+  11% {
+    transform: translate3d(var(--mc-shoot-dx, -320px), var(--mc-shoot-dy, 190px), 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(var(--mc-shoot-dx, -320px), var(--mc-shoot-dy, 190px), 0);
+    opacity: 0;
+  }
+}
+.mc-shoot-star {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  animation: mc-shoot var(--mc-shoot-dur, 13s) linear var(--mc-shoot-delay, 0s) infinite;
+  will-change: transform, opacity;
+}
+/* the streak itself: transparent tail → bright ion head, drawn along
+   the motion vector by the wrapper's rotation */
+.mc-shoot-tail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(186, 214, 255, 0.55) 55%,
+    rgba(235, 244, 255, 0.95) 100%
+  );
+  transform-origin: 0 50%;
+}
+.mc-shoot-head {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow:
+    0 0 10px 2px rgba(255, 255, 255, 0.9),
+    0 0 26px 6px rgba(147, 197, 253, 0.55);
+  transform: translate(-50%, -50%);
+}
+
+/* the moon: slow celestial drift + a breathing halo */
+.mc-moon-float {
+  animation: mc-float 11s ease-in-out infinite;
+}
+@keyframes mc-moon-halo {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 0.95; transform: scale(1.06); }
+}
+.mc-moon-halo {
+  animation: mc-moon-halo 7.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-shoot-star,
+  .mc-moon-float,
+  .mc-moon-halo {
+    animation: none;
+  }
+  .mc-shoot-star {
+    opacity: 0;
+  }
+}
+
+/* the hero is a self-contained night-sky stage: these token overrides
+   cascade to every descendant, so the universe stays deep navy even
+   when the rest of the site is in light mode (mc-* AND shadcn vars) */
+.mc-hero-stage {
+  --mc-bg: #071a33;
+  --mc-bg-2: #0b2345;
+  --mc-card: #0c2440;
+  --mc-card-2: #102d52;
+  --mc-ink: #f7f9fc;
+  --mc-dim: #9db2d0;
+  --mc-faint: #5a7396;
+  --mc-accent: #3b82f6;
+  --mc-accent-2: #60a5fa;
+  --mc-accent-deep: #2563eb;
+  --mc-accent-soft: rgba(59, 130, 246, 0.12);
+  --mc-line: rgba(234, 240, 247, 0.12);
+  --mc-line-soft: rgba(234, 240, 247, 0.06);
+  --mc-glow: rgba(59, 130, 246, 0.3);
+  --mc-cta-bg: #ffffff;
+  --mc-cta-fg: #071a33;
+  --mc-ghost: rgba(247, 249, 252, 0.34);
+
+  /* shadcn mapping — keep descendants theme-proof inside the stage */
+  --background: #071a33;
+  --foreground: #f7f9fc;
+  --card: #0c2440;
+  --card-foreground: #f7f9fc;
+  --popover: #0c2440;
+  --popover-foreground: #f7f9fc;
+  --primary: #f7f9fc;
+  --primary-foreground: #071a33;
+  --secondary: #102d52;
+  --secondary-foreground: #f7f9fc;
+  --muted: #102d52;
+  --muted-foreground: #9db2d0;
+  --accent: #3b82f6;
+  --accent-foreground: #ffffff;
+  --border: rgba(234, 240, 247, 0.12);
+  --input: rgba(234, 240, 247, 0.12);
+  --ring: #3b82f6;
+
+  /* re-resolve inherited paint inside the stage — body-level computed
+     values (e.g. color from text-foreground) would otherwise carry the
+     outer theme's resolved colors past the variable override */
+  color: var(--mc-ink);
+}
+
+/* chapter node statuses */
+.node-done { color: var(--mc-accent); }
+.node-progress { color: var(--mc-ink); }
+.node-todo { color: var(--mc-faint); }
+
+/* custom cursor: hide native cursor only on fine pointers when armed */
+body.mc-cursor-on,
+body.mc-cursor-on * {
+  cursor: none !important;
+}
+
+/* cursor ring modes */
+.cursor-ring {
+  transform: scale(1);
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, border-style 0.3s ease;
+}
+[data-mode="interactive"] .cursor-ring {
+  transform: scale(1.55);
+  border-color: var(--mc-accent);
+  background: var(--mc-accent-soft);
+}
+[data-mode="core"] .cursor-ring {
+  transform: scale(2.15);
+  border-color: var(--mc-accent);
+  border-style: dashed;
+  background: transparent;
+  animation: cursor-orbit 7s linear infinite;
+}
+@keyframes cursor-orbit {
+  to {
+    transform: scale(2.15) rotate(360deg);
+  }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .grain::after,
+  .mc-breathe,
+  .mc-spin-slow,
+  .mc-spin-slower,
+  .mc-float,
+  .mc-ping,
+  .mc-sheen,
+  .mc-blink,
+  .mc-marquee,
+  .mc-marquee-reverse,
+  .boot-cursor {
+    animation: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* marquee — the code strip */
+@keyframes mc-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.mc-marquee {
+  animation: mc-marquee 38s linear infinite;
+}
+.mc-marquee-reverse {
+  animation: mc-marquee 46s linear infinite reverse;
+}
+.mc-marquee-paused:hover .mc-marquee,
+.mc-marquee-paused:hover .mc-marquee-reverse {
+  animation-play-state: paused;
+}
+
+/* boot intro */
+@keyframes boot-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.boot-cursor {
+  animation: boot-blink 0.9s steps(1) infinite;
+}
+
+/* hide scrollbar for chip rails */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* editorial big quote */
+.editorial-quote {
+  font-family: var(--font-serif-display), Georgia, serif;
+  font-weight: 400;
+  line-height: 1.14;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+/* metadata row on artifact cards */
+.artifact-meta {
+  font-family: var(--font-code-mono), monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mc-faint);
+}
+
+/* section vertical rhythm */
+.mc-section {
+  position: relative;
+  padding-block: clamp(5rem, 11vw, 9.5rem);
+}
+
+/* thin rule with center dot */
+.mc-rule {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--mc-faint);
+}
+.mc-rule::before,
+.mc-rule::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: var(--mc-line);
+}
+
+/* form inputs */
+.mc-input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--mc-line);
+  background: var(--mc-bg);
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+  color: var(--mc-ink);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.mc-input:focus {
+  border-color: var(--mc-accent);
+}
+.mc-input::placeholder {
+  color: var(--mc-faint);
+}
+select.mc-input {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 49%, var(--mc-dim) 50%), linear-gradient(-45deg, transparent 49%, var(--mc-dim) 50%);
+  background-position: calc(100% - 18px) 55%, calc(100% - 13px) 55%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+}
