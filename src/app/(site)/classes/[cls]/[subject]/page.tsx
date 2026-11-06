@@ -7,6 +7,15 @@ function isSubjectKey(v: string): v is (typeof SUBJECTS)[number]["key"] {
   return SUBJECTS.some((s) => s.key === v);
 }
 
+/* Pre-render every class × subject at build time (needed for output: export). */
+export async function generateStaticParams() {
+  const out: { cls: string; subject: string }[] = [];
+  for (let cls = 6; cls <= 12; cls++) {
+    for (const s of SUBJECTS) out.push({ cls: String(cls), subject: s.key });
+  }
+  return out;
+}
+
 export async function generateMetadata({
   params,
 }: {

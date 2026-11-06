@@ -8,10 +8,13 @@ import { ThemeProvider } from "next-themes";
 
 /* Clerk turns on the moment BOTH keys exist in .env — until then the
    site runs unchanged on its fallback auth. (One key alone is not a
-   valid state: clerkMiddleware needs the secret too.) */
+   valid state: clerkMiddleware needs the secret too.)
+   NEXT_PUBLIC_STATIC=1 (GoDaddy-style static export) → Clerk is OFF:
+   ClerkProvider registers server actions, which static export forbids. */
+const STATIC_EXPORT = process.env.NEXT_PUBLIC_STATIC === "1";
 const CLERK_ENABLED = Boolean(
   process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY && process.env.CLERK_SECRET_KEY
-);
+) && !STATIC_EXPORT;
 
 const serif = Instrument_Serif({
   variable: "--font-serif-display",

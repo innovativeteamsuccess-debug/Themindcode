@@ -22,9 +22,14 @@ import { cn } from "@/lib/utils";
      keeps every marketing page fully static.
    ============================================================ */
 
-const CLERK_ON = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
+const CLERK_ON =
+  Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) &&
+  process.env.NEXT_PUBLIC_STATIC !== "1";
+/* Static export (GoDaddy): no server, no auth — hide the control. */
+const STATIC = process.env.NEXT_PUBLIC_STATIC === "1";
 
 export function NavAuthControls() {
+  if (STATIC) return null;
   if (!CLERK_ON) return <GoogleAuthControl />;
 
   return (
