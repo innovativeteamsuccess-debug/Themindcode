@@ -1,0 +1,7 @@
+out/
+download/
+node_modules/
+.next/
+*.log
+upload/
+tool-results/
